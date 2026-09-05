@@ -80,8 +80,6 @@ Qeyd: SPA fallback `server/index.ts`-dədir — statik hostda `/qeydiyyat` kimi 
 
 ## Yol haritası
 
-- [ ] Gerçek ekip üyeleri + fotoğraflar
-- [ ] Kullanılmayan bağımlılıkların temizliği (`axios`, `zod`, `recharts`, `framer-motion`)
 - [ ] Test (vitest) + lint
 
 ## İletişim
