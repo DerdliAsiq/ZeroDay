@@ -8,11 +8,11 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
-import Team from "./pages/Team";
 import Tracks from "./pages/Tracks";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
             <Route path="/haqqimizda" component={About} />
             <Route path="/istiqametler" component={Tracks} />
             <Route path="/layiheler" component={Projects} />
-            <Route path="/komanda" component={Team} />
+            <Route path="/gallery" component={Gallery} />
             <Route path="/qeydiyyat" component={Join} />
             <Route path="/elaqe" component={Contact} />
             <Route component={NotFound} />

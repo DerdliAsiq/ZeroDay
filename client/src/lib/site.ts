@@ -25,6 +25,6 @@ export const NAV = [
   { to: "/haqqimizda", label: "Haqqımızda" },
   { to: "/istiqametler", label: "İstiqamətlər" },
   { to: "/layiheler", label: "Layihələr" },
-  { to: "/komanda", label: "Komanda" },
+  { to: "/gallery", label: "Qalereya" },
   { to: "/elaqe", label: "Əlaqə" },
 ];

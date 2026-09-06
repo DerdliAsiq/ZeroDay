@@ -6,7 +6,7 @@ const pageCards = [
   { to: "/haqqimizda", index: "01", tag: "ABOUT", title: "Haqqımızda", text: "Klubun missiyası və komanda quruluşu." },
   { to: "/istiqametler", index: "02", tag: "TRACKS", title: "Öyrənmə istiqamətləri", text: "İki istiqamət, bir müdafiə düşüncəsi." },
   { to: "/layiheler", index: "03", tag: "PROJECTS", title: "Layihələr", text: "Fikirdən müdafiəyə gedən yol." },
-  { to: "/komanda", index: "04", tag: "TEAM", title: "Komanda", text: "Siqnalın arxasındakı insanlar." },
+  { to: "/gallery", index: "04", tag: "GALLERY", title: "Qalereya", text: "Klubdan kadrlar və tədbir anları." },
   { to: "/qeydiyyat", index: "05", tag: "JOIN", title: "Qeydiyyat", text: "Rəsmi tələbə qeydiyyat formu." },
   { to: "/elaqe", index: "06", tag: "CONTACT", title: "Əlaqə", text: "Sualın var? Bizə yaz." },
 ];
