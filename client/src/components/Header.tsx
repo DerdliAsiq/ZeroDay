@@ -20,8 +20,10 @@ export default function Header() {
     closeMenu();
   }, [path]);
 
+  const forceDark = path === "/layiheler" || path === "/qeydiyyat";
+
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <header className={`site-header ${scrolled || forceDark ? "is-scrolled" : ""}`}>
       <div className="container header-inner">
         <Link href="/" className="brand-lockup" aria-label="Zero Day ana səhifə">
           <span className="brand-mark-wrap">

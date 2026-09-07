@@ -100,6 +100,9 @@ jspm_packages/
 tmp/
 temp/
 
+# Local image staging (source files live in client/public/images)
+user_images/
+
 # Database
 *.db
 *.sqlite
