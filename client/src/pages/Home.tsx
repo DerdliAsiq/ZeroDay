@@ -55,6 +55,7 @@ export default function Home() {
         <section className="signal-strip" aria-label="Klubun qısa göstəriciləri">
           <div className="container signal-grid">
             <div><span className="metric-value">02</span><span className="metric-label">ÖYRƏNMƏ İSTİQAMƏTİ</span></div>
+            <div><span className="metric-value">07</span><span className="metric-label">AÇIQ LAYİHƏ</span></div>
             <div><span className="metric-value">∞</span><span className="metric-label">BİRGƏ TƏCRÜBƏ</span></div>
             <div className="signal-note"><Activity size={17} /><span>İndi öyrənilir: <strong>Network Defense</strong></span></div>
           </div>
