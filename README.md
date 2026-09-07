@@ -2,7 +2,7 @@
 
 Gəncə Dövlət Universitetinin tələbə kiber təhlükəsizlik klubu üçün çoxsəhifəli tanıtım sitesi. Karanlık "Signal" teması: charcoal zemin, Signal Green (`#B9F227`) vurgular, Space Grotesk + IBM Plex Mono.
 
-**Səhifələr:** `/` (hero + konsol + bölmə kartları), `/haqqimizda`, `/istiqametler`, `/layiheler` (GitHub kartları), `/gallery` (klub fotoları + lightbox), `/qeydiyyat` (server `/api/register`), `/elaqe` (server `/api/contact`).
+**Səhifələr:** `/` (hero + konsol + bölmə kartları), `/haqqimizda`, `/istiqametler` (3 track: əsaslar, CTF, layihə laboratoriyası + CTA), `/layiheler` (GitHub kartları), `/gallery` (klub fotoları + lightbox), `/qeydiyyat` (server `/api/register`), `/elaqe` (server `/api/contact`).
 
 ## Texnologiyalar
 
