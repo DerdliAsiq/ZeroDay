@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "check:no-secrets": "node -e \"const fs=require('fs'),path=require('path');const dir=path.join('dist','public','assets');if(!fs.existsSync(dir)){console.log('no dist assets, skip');process.exit(0)}const files=fs.readdirSync(dir).filter(f=>f.endsWith('.js'));let bad=false;for(const f of files){const s=fs.readFileSync(path.join(dir,f),'utf8');if(/VITE_TELEGRAM_(BOT|REG_BOT)_TOKEN/.test(s)||/api\\.telegram\\.org\\/bot/.test(s)){console.error('secret leak in '+f);bad=true}}process.exit(bad?1:0)\"",
     "format": "prettier --write ."
   },
   "dependencies": {

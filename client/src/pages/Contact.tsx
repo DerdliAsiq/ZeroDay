@@ -1,5 +1,4 @@
 import { SOCIALS } from "@/lib/site";
-import { sendToTelegram } from "@/lib/telegram";
 import { ArrowUpRight, Github, Instagram, Mail, MapPin } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -12,30 +11,44 @@ export default function Contact() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    if (String(data.get("company") ?? "").trim() !== "") return;
-    const name = String(data.get("contact-name") ?? "").trim();
-    const email = String(data.get("contact-email") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
-    setContactSending(true);
-    const sent = await sendToTelegram(`ZeroDay sual\nAd: ${name}\nE-poçt: ${email}\n\n${message}`, "VITE_TELEGRAM_BOT_TOKEN");
-    setContactSending(false);
-    if (sent) {
+    const payload = {
+      company: String(data.get("company") ?? ""),
+      name: String(data.get("contact-name") ?? "").trim(),
+      email: String(data.get("contact-email") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
+    };
+    const mailto = () => {
+      const subject = encodeURIComponent(`ZeroDay sual: ${payload.name}`);
+      const body = encodeURIComponent(`${payload.message}\n\n— ${payload.name} (${payload.email})`);
       setContactSent(true);
-      toast.success("Mesaj göndərildi", { description: "Tezliklə səninlə əlaqə saxlayacağıq." });
+      toast.success("Mesaj hazırdır", {
+        description: "Bağlantı qurulmadı — e-poçt proqramın açılır, göndər ki, mesaj çatsın.",
+        action: {
+          label: "E-poçt aç",
+          onClick: () => { window.location.href = `mailto:${SOCIALS.email}?subject=${subject}&body=${body}`; },
+        },
+      });
       form.reset();
-      return;
+    };
+    setContactSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setContactSending(false);
+      if (res.ok) {
+        setContactSent(true);
+        toast.success("Mesaj göndərildi", { description: "Tezliklə səninlə əlaqə saxlayacağıq." });
+        form.reset();
+        return;
+      }
+      mailto();
+    } catch {
+      setContactSending(false);
+      mailto();
     }
-    const subject = encodeURIComponent(`ZeroDay sual: ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    setContactSent(true);
-    toast.success("Mesaj hazırdır", {
-      description: "Telegram qoşulmayıb — e-poçt proqramın açılır, göndər ki, mesaj çatsın.",
-      action: {
-        label: "E-poçt aç",
-        onClick: () => { window.location.href = `mailto:${SOCIALS.email}?subject=${subject}&body=${body}`; },
-      },
-    });
-    form.reset();
   }
 
   return (
