@@ -163,6 +163,20 @@ h2 { margin-top: 19px; color: #f1f4f0; font-size: clamp(2.6rem, 5vw, 5.1rem); li
 .team-board-caption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; color: #77858d; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .08em; }
 .team-board-caption span:first-child { color: var(--green); }
 
+.about-mentors { margin-top: 28px; padding: 22px; border: 1px solid rgba(185,242,39,.24); background: linear-gradient(135deg, rgba(185,242,39,.055), rgba(255,255,255,.012)); }
+.mentor-card { display: grid; grid-template-columns: 200px 1fr; gap: 26px; align-items: start; margin-top: 6px; padding-top: 22px; }
+.mentor-card + .mentor-card { margin-top: 22px; border-top: 1px solid var(--line); }
+.mentor-photo { position: relative; aspect-ratio: 1; overflow: hidden; border: 1px solid rgba(185,242,39,.35); background: var(--surface-2); }
+.mentor-initials { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(185,242,39,.5); font-size: 52px; font-weight: 700; letter-spacing: .05em; }
+.mentor-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.9) contrast(1.04); }
+.mentor-role { color: var(--green); font: 10px 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+.mentor-info h4 { margin: 8px 0 0; color: #f1f4f0; font-size: 24px; letter-spacing: -.02em; }
+.mentor-info p { margin-top: 12px; color: #a9b3b6; font-size: 15px; line-height: 1.7; }
+@media (max-width: 700px) {
+  .mentor-card { grid-template-columns: 1fr; }
+  .mentor-photo { max-width: 220px; }
+}
+
 .section-tracks { background: var(--ink); }
 .section-topline { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .topline-meta { color: #66737c; font-size: 10px; }

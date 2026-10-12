@@ -1,6 +1,17 @@
 import { ASSETS, hideBrokenImg } from "@/lib/site";
 import { LockKeyhole } from "lucide-react";
 
+const MENTORS = [
+  {
+    name: "Bərzamin Eyvazov",
+    role: "SƏDR / MENTOR",
+    initials: "BE",
+    image: ASSETS.mentorBerzamin,
+    alt: "Bərzamin Eyvazov — Sədr / Mentor",
+    bio: "Bərzamin Eyvazov kibertəhlükəsizlik və proqram təminatının hazırlanması sahəsində inkişaf edən gənc mütəxəssisdir. O, Linux, penetrasiya testləri, zəifliklərin araşdırılması, şəbəkə təhlükəsizliyi və Python əsaslı avtomatlaşdırma üzərində çalışır. Hazırda Holberton School-da kibertəhlükəsizlik, Gəncə Dövlət Universitetində isə Kompüter Elmləri üzrə təhsil alır. Bərzamin həmçinin süni intellekt, təhlükəsizlik sistemləri və praktiki kibertəhlükəsizlik layihələri ilə maraqlanır.",
+  },
+];
+
 export default function About() {
   return (
     <div className="site-shell">
@@ -21,10 +32,21 @@ export default function About() {
                 <div className="body-copy"><p>Gəncə Dövlət Universitetinin klub mühiti daxilində birlikdə araşdırır, sənədləşdirir və müdafiə yönümlü düşüncə formalaşdırırıq.</p></div>
               </div>
               <div className="about-image-wrap"><img src={ASSETS.network} alt="Abstrakt şəbəkə xəritəsi" className="about-image" loading="lazy" decoding="async" onError={hideBrokenImg} /><div className="image-caption"><span>FIELD NOTE / 001</span><span>Observe. Map. Defend.</span></div></div>
-              <div className="about-team-board">
-                <div className="team-board-header"><div><span className="micro-label"><span className="green-bar" /> CLUB STRUCTURE</span><h3>Komanda və vəzifə bölgüsü</h3></div><span className="team-board-code">ZERO DAY / PEOPLE</span></div>
-                <div className="team-board-frame"><img src={ASSETS.teamBoard} alt="Zero Day Club komanda və vəzifə bölgüsü: sədr, mentor, teaching assistant, social media manager və success manager rolları" loading="lazy" decoding="async" onError={hideBrokenImg} /></div>
-                <div className="team-board-caption"><span>GDU / RİYAZİYYAT VƏ İNFORMATİKA FAKÜLTƏSİ</span><span>STRUCTURE MAP / 2026</span></div>
+              <div className="about-mentors">
+                <div className="team-board-header"><div><span className="micro-label"><span className="green-bar" /> CLUB MENTORS</span><h3>Mentorlar</h3></div><span className="team-board-code">ZERO DAY / PEOPLE</span></div>
+                {MENTORS.map((m) => (
+                  <article className="mentor-card" key={m.name}>
+                    <div className="mentor-photo">
+                      <span className="mentor-initials" aria-hidden="true">{m.initials}</span>
+                      <img src={m.image} alt={m.alt} loading="lazy" decoding="async" onError={hideBrokenImg} />
+                    </div>
+                    <div className="mentor-info">
+                      <div className="mentor-role">{m.role}</div>
+                      <h4>{m.name}</h4>
+                      <p>{m.bio}</p>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
