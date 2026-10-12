@@ -19,11 +19,11 @@ const MENTORS = [
     bio: "Natəvan Rüstəmova texnologiya, kibertəhlükəsizlik və rəqəmsal sahələrə böyük marağı olan, təşkilatçılıq və liderlik bacarıqları olan bir gəncdir. O, klub daxilində layihələrin idarə olunması, tədbirlərin təşkili istiqamətində fəaliyyət göstərir. Hazırda Gəncə Dövlət Universitetində Kompüter Elmləri üzrə təhsil alır və Zero Day Cyber Club-ın Sədr müavini olaraq klubun inkişafına və tələbələrin birgə öyrənmə mühitinin formalaşdırılmasına töhfə verir.",
   },
   {
-    name: "Ramil Eliyev",
+    name: "Ramil Əliyev",
     role: "MENTOR",
     initials: "RE",
     image: ASSETS.mentorRamil,
-    alt: "Ramil Eliyev — Mentor",
+    alt: "Ramil Əliyev — Mentor",
     bio: "Məlumat tezliklə əlavə olunacaq.",
   },
 ];
