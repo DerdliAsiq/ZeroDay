@@ -10,6 +10,14 @@ const MENTORS = [
     alt: "Bərzamin Eyvazov — Sədr / Mentor",
     bio: "Bərzamin Eyvazov kibertəhlükəsizlik və proqram təminatının hazırlanması sahəsində inkişaf edən gənc mütəxəssisdir. O, Linux, penetrasiya testləri, zəifliklərin araşdırılması, şəbəkə təhlükəsizliyi və Python əsaslı avtomatlaşdırma üzərində çalışır. Hazırda Holberton School-da kibertəhlükəsizlik, Gəncə Dövlət Universitetində isə Kompüter Elmləri üzrə təhsil alır. Bərzamin həmçinin süni intellekt, təhlükəsizlik sistemləri və praktiki kibertəhlükəsizlik layihələri ilə maraqlanır.",
   },
+  {
+    name: "Natəvan Rüstəmova",
+    role: "SƏDR MÜAVİNİ",
+    initials: "NR",
+    image: ASSETS.mentorNatevan,
+    alt: "Natəvan Rüstəmova — Sədr müavini",
+    bio: "Natəvan Rüstəmova texnologiya, kibertəhlükəsizlik və rəqəmsal sahələrə böyük marağı olan, təşkilatçılıq və liderlik bacarıqları olan bir gəncdir. O, klub daxilində layihələrin idarə olunması, tədbirlərin təşkili istiqamətində fəaliyyət göstərir. Hazırda Gəncə Dövlət Universitetində Kompüter Elmləri üzrə təhsil alır və Zero Day Cyber Club-ın Sədr müavini olaraq klubun inkişafına və tələbələrin birgə öyrənmə mühitinin formalaşdırılmasına töhfə verir.",
+  },
 ];
 
 export default function About() {
@@ -33,7 +41,7 @@ export default function About() {
               </div>
               <div className="about-image-wrap"><img src={ASSETS.network} alt="Abstrakt şəbəkə xəritəsi" className="about-image" loading="lazy" decoding="async" onError={hideBrokenImg} /><div className="image-caption"><span>FIELD NOTE / 001</span><span>Observe. Map. Defend.</span></div></div>
               <div className="about-mentors">
-                <div className="team-board-header"><div><span className="micro-label"><span className="green-bar" /> CLUB MENTORS</span><h3>Mentorlar</h3></div><span className="team-board-code">ZERO DAY / PEOPLE</span></div>
+                <div className="team-board-header"><div><span className="micro-label"><span className="green-bar" /> CLUB TEAM</span><h3>Komanda</h3></div><span className="team-board-code">ZERO DAY / PEOPLE</span></div>
                 {MENTORS.map((m) => (
                   <article className="mentor-card" key={m.name}>
                     <div className="mentor-photo">
