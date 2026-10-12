@@ -4,14 +4,28 @@ import { Link } from "wouter";
 
 const pageCards = [
   { to: "/haqqimizda", index: "01", tag: "ABOUT", title: "Haqqımızda", text: "Klubun missiyası və komanda quruluşu." },
-  { to: "/istiqametler", index: "02", tag: "TRACKS", title: "Öyrənmə istiqamətləri", text: "İki istiqamət, bir müdafiə düşüncəsi." },
+  { to: "/istiqametler", index: "02", tag: "TRACKS", title: "Öyrənmə istiqamətləri", text: "Üç istiqamət, bir müdafiə düşüncəsi." },
   { to: "/layiheler", index: "03", tag: "PROJECTS", title: "Layihələr", text: "Fikirdən müdafiəyə gedən yol." },
   { to: "/gallery", index: "04", tag: "GALLERY", title: "Qalereya", text: "Klubdan kadrlar və tədbir anları." },
   { to: "/qeydiyyat", index: "05", tag: "JOIN", title: "Qeydiyyat", text: "Rəsmi tələbə qeydiyyat formu." },
   { to: "/elaqe", index: "06", tag: "CONTACT", title: "Əlaqə", text: "Sualın var? Bizə yaz." },
 ];
 
+function getNextSession(): string {
+  const base = new Date(2026, 9, 12);
+  const next = new Date(base);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  while (next <= today) {
+    next.setDate(next.getDate() + 7);
+  }
+  const dd = String(next.getDate()).padStart(2, "0");
+  const mm = String(next.getMonth() + 1).padStart(2, "0");
+  return `${dd}.${mm}.${next.getFullYear()}`;
+}
+
 export default function Home() {
+  const nextSession = getNextSession();
   return (
     <div className="site-shell">
       <a href="#main-content" className="skip-link">Əsas məzmuna keç</a>
@@ -43,7 +57,7 @@ export default function Home() {
                   <div><span className="console-muted">$</span> initialize_zero_day<span className="cursor" /></div>
                   <div className="console-success">[ok] learning environment ready</div>
                   <div className="console-success">[ok] ethical practice enabled</div>
-                  <div className="console-muted">[--] next_session: 12.10.2026</div>
+                  <div className="console-muted">[--] next_session: {nextSession}</div>
                 </div>
               </div>
               <div className="console-bottom"><span>GƏNCƏ / AZ</span><span>v.01.26</span></div>

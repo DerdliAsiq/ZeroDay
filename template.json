@@ -1,7 +1,7 @@
 {
   "id": "web-static",
   "name": "Web App (static only)",
-  "description": "A pure frontend static website with React and Vite, no backend server.",
+  "description": "TEMPLATE SNAPSHOT — outdated. Real app: React + Vite frontend with Express backend (server/index.ts, /api/*). Do not scaffold from this file.",
   "capabilities": [
     "static"
   ],

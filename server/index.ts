@@ -9,13 +9,18 @@ const __dirname = path.dirname(__filename);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 10;
-const rate = new Map<string, { count: number; reset: number }>();
+const buckets = new Map<string, Map<string, { count: number; reset: number }>>();
 
-function rateLimited(ip: string): boolean {
+function rateLimited(ip: string, scope: string): boolean {
   const now = Date.now();
-  const entry = rate.get(ip);
+  let bucket = buckets.get(scope);
+  if (!bucket) {
+    bucket = new Map();
+    buckets.set(scope, bucket);
+  }
+  const entry = bucket.get(ip);
   if (!entry || now > entry.reset) {
-    rate.set(ip, { count: 1, reset: now + RATE_WINDOW_MS });
+    bucket.set(ip, { count: 1, reset: now + RATE_WINDOW_MS });
     return false;
   }
   entry.count += 1;
@@ -56,7 +61,7 @@ async function startServer() {
   app.use(express.json({ limit: "32kb" }));
 
   app.post("/api/register", async (req, res) => {
-    if (rateLimited(req.ip ?? "x")) return res.status(429).json({ ok: false });
+    if (rateLimited(req.ip ?? "x", "register")) return res.status(429).json({ ok: false });
     const b = req.body ?? {};
     if (typeof b.company === "string" && b.company.trim() !== "") return res.json({ ok: true });
     const fullName = str(b.fullName, 3, 120);
@@ -79,7 +84,7 @@ async function startServer() {
   });
 
   app.post("/api/contact", async (req, res) => {
-    if (rateLimited(req.ip ?? "x")) return res.status(429).json({ ok: false });
+    if (rateLimited(req.ip ?? "x", "contact")) return res.status(429).json({ ok: false });
     const b = req.body ?? {};
     if (typeof b.company === "string" && b.company.trim() !== "") return res.json({ ok: true });
     const name = str(b.name, 2, 120);
@@ -96,13 +101,13 @@ async function startServer() {
   });
 
   app.post("/api/anonymous", async (req, res) => {
-    if (rateLimited(req.ip ?? "x")) return res.status(429).json({ ok: false });
+    if (rateLimited(req.ip ?? "x", "anonymous")) return res.status(429).json({ ok: false });
     const b = req.body ?? {};
     if (typeof b.company === "string" && b.company.trim() !== "") return res.json({ ok: true });
     const message = str(b.message, 10, 2000);
     if (!message) return res.status(400).json({ ok: false });
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+    const token = process.env.TELEGRAM_ANON_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_ANON_CHAT_ID;
     if (!token || !chatId) return res.status(501).json({ ok: false });
     const ok = await sendTelegram(token, chatId, `ZeroDay anonim\n\n${message}`);
     if (!ok) return res.status(502).json({ ok: false });

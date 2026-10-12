@@ -32,7 +32,7 @@ class ErrorBoundary extends Component<Props, State> {
             />
 
             <h2 className="text-xl mb-4">Gözlənilməz xəta baş verdi.</h2>
-            <p className="text-sm text-muted-foreground mb-6">Səhifəni yeniləyin. Problem davam edərsə zeroday@gdu.edu.az ilə əlaqə saxlayın.</p>
+            <p className="text-sm text-muted-foreground mb-6">Səhifəni yeniləyin. Problem davam edərsə berzamin55@gmail.com ilə əlaqə saxlayın.</p>
 
             {import.meta.env.DEV ? (
               <div className="p-4 w-full rounded bg-muted overflow-auto mb-6">
