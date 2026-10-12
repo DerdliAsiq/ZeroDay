@@ -95,6 +95,20 @@ async function startServer() {
     return res.json({ ok: true });
   });
 
+  app.post("/api/anonymous", async (req, res) => {
+    if (rateLimited(req.ip ?? "x")) return res.status(429).json({ ok: false });
+    const b = req.body ?? {};
+    if (typeof b.company === "string" && b.company.trim() !== "") return res.json({ ok: true });
+    const message = str(b.message, 10, 2000);
+    if (!message) return res.status(400).json({ ok: false });
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (!token || !chatId) return res.status(501).json({ ok: false });
+    const ok = await sendTelegram(token, chatId, `ZeroDay anonim\n\n${message}`);
+    if (!ok) return res.status(502).json({ ok: false });
+    return res.json({ ok: true });
+  });
+
   const staticPath =
     process.env.NODE_ENV === "production"
       ? path.resolve(__dirname, "public")

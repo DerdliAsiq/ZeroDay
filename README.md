@@ -61,7 +61,8 @@ Yeni resim akışı: `user_images/` klasörünə at → `client/public/images/` 
 
 - **Qeydiyyat** (`/qeydiyyat` → `POST /api/register`): Ad Soyad Ata, telefon, email, fakültə, ixtisas, kurs, universitet.
 - **Əlaqə** (`/elaqe` → `POST /api/contact`): ad, e-poçt, mesaj.
-- Server validasiyası + IP rate-limit (10/dk) + honeypot var. Token/ID yoxdursa API `501` dönür, formalar `mailto:berzamin55@gmail.com` rejiminə düşür.
+- **Anonim** (`/elaqe` → `POST /api/anonymous`): yalnız mesaj (10-2000 simvol). Ad/e-poçt soruşulmur, IP qeydə alınmır, `mailto` fallback yoxdur.
+- Server validasiyası + IP rate-limit (10/dk) + honeypot var. Token/ID yoxdursa API `501` dönür, kimlikli formalar `mailto:berzamin55@gmail.com` rejiminə düşür (anonim form düşmür).
 - KVKK notu formun altındadır, servis adı yazılmır.
 
 ## Ortam dəyişkenleri (yalnız server)
