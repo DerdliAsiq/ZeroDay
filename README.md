@@ -60,7 +60,7 @@ Yeni resim akışı: `user_images/` klasörünə at → `client/public/images/` 
 
 - **Qeydiyyat** (`/qeydiyyat` → `POST /api/register`): Ad Soyad Ata, telefon, email, fakültə, ixtisas, kurs, universitet.
 - **Əlaqə** (`/elaqe` → `POST /api/contact`): ad, e-poçt, mesaj.
-- **Anonim** (`/elaqe` → `POST /api/anonymous`): yalnız mesaj (10-2000 simvol). Ad/e-poçt soruşulmur, IP qeydə alınmır, `mailto` fallback yoxdur. Ayrı `TELEGRAM_ANON_*` bot/chat-ə gedir.
+- **Anonim** (`/elaqe` → `POST /api/anonymous`): yalnız mesaj (10-2000 simvol). Ad/e-poçt soruşulmur, IP qeydə alınmır, `mailto` fallback yoxdur. Mövcud chat-ə gedir.
 - Server validasiyası + endpoint başına ayrı IP rate-limit (10/dk) + honeypot var. Token/ID yoxdursa API `501` dönür, kimlikli formalar `mailto:berzamin55@gmail.com` rejiminə düşür (anonim form düşmür).
 - KVKK notu formun altındadır, servis adı yazılmır.
 
@@ -69,16 +69,14 @@ Yeni resim akışı: `user_images/` klasörünə at → `client/public/images/` 
 ```
 TELEGRAM_BOT_TOKEN=...          # sual botu
 TELEGRAM_REG_BOT_TOKEN=...      # qeydiyyat botu
-TELEGRAM_CHAT_ID=...            # sual + qeydiyyat eyni chat-ə göndərir
-TELEGRAM_ANON_BOT_TOKEN=...     # anonim qutu üçün özəl bot
-TELEGRAM_ANON_CHAT_ID=...       # anonim mesajlar yalnız bura gedir
+TELEGRAM_CHAT_ID=...            # sual + qeydiyyat + anonim eyni chat-ə göndərir
 ```
 
 UYARI: Token'ları əsla `VITE_` önekiylə tanımlama — bundle'a sızar. Nümunə: `.env.example`. `.env` git-ə düşmür.
 
 ## Deploy (Render)
 
-Build: `pnpm install && pnpm build` — Start: `pnpm start`. Environment'a yuxarıdakı 5 secret + `NODE_ENV=production` əlavə et, köhnə `VITE_TELEGRAM_*` varsa sil, sonra redeploy.
+Build: `pnpm install && pnpm build` — Start: `pnpm start`. Environment'a yuxarıdakı 3 secret + `NODE_ENV=production` əlavə et, köhnə `VITE_TELEGRAM_*` varsa sil, sonra redeploy.
 
 Statik hostda `/qeydiyyat` kimi yollar üçün rewrite qaydası lazımdır (Vercel/Netlify-də avtomatik, Nginx-də `try_files`). SPA fallback `server/index.ts`-dədir.
 
