@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
+import Syllabus from "./pages/Syllabus";
 import Tracks from "./pages/Tracks";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" component={Home} />
             <Route path="/haqqimizda" component={About} />
             <Route path="/istiqametler" component={Tracks} />
+            <Route path="/tedris-proqrami" component={Syllabus} />
             <Route path="/layiheler" component={Projects} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/qeydiyyat" component={Join} />

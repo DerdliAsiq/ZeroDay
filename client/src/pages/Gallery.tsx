@@ -20,16 +20,20 @@ function item(n: string, ext = "jpeg", kind: GalleryItem["kind"] = "image"): Gal
 }
 
 // Mövcud faylların dəqiq siyahısı (03,04,16,17 yoxdur — boş düymə yaratmamaq üçün).
-// Yeni: 27-30 jpeg, 31 mp4, 32 png (user_images-dən normalize edilib).
+// Yeni: 29-30 jpeg (Kahoot), 31 mp4 (video) — user_images-dən normalize edilib.
+// Qeyd: user_images-dəki 3 portret (27,28,32) Haqqımızda hissəsinə aiddir,
+// team-member-01/02/03 kimi saxlanılır, qalereyaya daxil deyil.
 const GALLERY: GalleryItem[] = [
   item("01"), item("02"),
   item("05"), item("06"), item("07"), item("08"), item("09"), item("10"),
   item("11"), item("12"), item("13"), item("14"), item("15"),
   item("18"), item("19"), item("20"), item("21"), item("22"),
   item("23"), item("24"), item("25"), item("26"),
-  item("27"), item("28"), item("29"), item("30"),
+  item("29"), item("30"),
   item("31", "mp4", "video"),
-  item("32", "png"),
+  item("32"), item("33"),
+  item("34", "mp4", "video"),
+  item("35", "mp4", "video"),
 ];
 
 export default function Gallery() {
@@ -77,11 +81,14 @@ export default function Gallery() {
                   {GALLERY.map((item, i) => (
                     <button key={item.src} className="gallery-item" onClick={() => setActive(i)} aria-label={`${item.alt} — böyüt`}>
                       {item.kind === "video" ? (
-                        <video src={item.src} muted playsInline preload="metadata" aria-label={item.alt} />
+                        <>
+                          <video src={item.src} muted playsInline preload="metadata" aria-label={item.alt} />
+                          <span className="gallery-play" aria-hidden="true"><Play size={26} /></span>
+                        </>
                       ) : (
                         <img src={item.src} alt={item.alt} loading="lazy" decoding="async" onError={hideBrokenImg} />
                       )}
-                      <span className="gallery-meta"><span>{item.code}</span>{item.kind === "video" ? <Play size={14} /> : <Expand size={14} />}</span>
+                      <span className="gallery-meta"><span>{item.code}</span>{item.kind === "video" ? <span className="gallery-videotag"><Play size={12} /> VİDEO</span> : <Expand size={14} />}</span>
                     </button>
                   ))}
                 </div>

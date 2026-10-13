@@ -67,10 +67,11 @@ export default function Tracks() {
             <div className="tracks-cta">
               <h3>Növbəti səviyyəyə keçməyə hazırsan?</h3>
               <p>Sıfırdan başla, praktika ilə inkişaf et, komanda ilə real layihələr hazırla.</p>
-              <div className="hero-actions">
-                <Link className="button button-primary" href="/qeydiyyat">Kluba qoşul <ArrowUpRight size={17} /></Link>
-                <Link className="button button-ghost" href="/layiheler">Layihələrə bax <ChevronRight size={17} /></Link>
-              </div>
+                <div className="hero-actions">
+                  <Link className="button button-primary" href="/qeydiyyat">Kluba qoşul <ArrowUpRight size={17} /></Link>
+                  <Link className="button button-ghost" href="/tedris-proqrami">Tədris proqramı <ChevronRight size={17} /></Link>
+                  <Link className="button button-ghost" href="/layiheler">Layihələrə bax <ChevronRight size={17} /></Link>
+                </div>
             </div>
           </div>
         </section>

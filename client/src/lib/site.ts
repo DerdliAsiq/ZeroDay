@@ -27,6 +27,7 @@ export const SOCIALS = {
 export const NAV = [
   { to: "/haqqimizda", label: "Haqqımızda" },
   { to: "/istiqametler", label: "İstiqamətlər" },
+  { to: "/tedris-proqrami", label: "Tədris" },
   { to: "/layiheler", label: "Layihələr" },
   { to: "/gallery", label: "Qalereya" },
   { to: "/elaqe", label: "Əlaqə" },

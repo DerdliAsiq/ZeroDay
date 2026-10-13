@@ -240,6 +240,9 @@ h2 { margin-top: 19px; color: #f1f4f0; font-size: clamp(2.6rem, 5vw, 5.1rem); li
 .gallery-item:hover { border-color: rgba(185,242,39,.55); transform: translateY(-4px); }
 .gallery-item img, .gallery-item video { width: 100%; height: 240px; object-fit: cover; display: block; filter: saturate(.85); transition: transform .35s var(--ease-out), filter .25s ease; }
 .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.03); filter: saturate(1); }
+.gallery-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 58px; height: 58px; display: grid; place-items: center; color: var(--green); border: 1px solid rgba(185,242,39,.6); background: rgba(8,12,16,.55); backdrop-filter: blur(4px); transition: transform .2s var(--ease-out), background .18s ease, color .18s ease; pointer-events: none; }
+.gallery-item:hover .gallery-play { transform: translate(-50%, -50%) scale(1.1); background: var(--green); color: var(--ink); }
+.gallery-videotag { display: inline-flex; align-items: center; gap: 5px; color: var(--green); }
 .gallery-meta { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; color: #a3adb0; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .08em; background: linear-gradient(transparent, rgba(8,12,16,.92)); }
 .gallery-meta span:first-child { color: var(--green); }
 .gallery-lightbox { max-width: min(920px, calc(100vw - 2rem)); padding: 0; overflow: hidden; border: 1px solid rgba(185,242,39,.3); background: #0a0e13; }
@@ -250,6 +253,42 @@ h2 { margin-top: 19px; color: #f1f4f0; font-size: clamp(2.6rem, 5vw, 5.1rem); li
 .gallery-viewer-nav { display: flex; justify-content: space-between; padding: 12px 14px; border-top: 1px solid var(--line); }
 .gallery-viewer-nav button { width: 44px; height: 44px; display: grid; place-items: center; color: var(--green); cursor: pointer; border: 1px solid rgba(185,242,39,.4); background: transparent; transition: background .18s ease, color .18s ease; }
 .gallery-viewer-nav button:hover { background: var(--green); color: var(--ink); }
+
+.section-syllabus { background: var(--ink); }
+.syllabus-main { min-width: 0; }
+.syllabus-lead { max-width: 560px; margin-top: 28px; color: #8d99a2; font-size: 15px; line-height: 1.65; }
+.syllabus-meta { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 22px; color: #a9b3b6; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .04em; }
+.syllabus-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.syllabus-meta svg { color: var(--green); }
+.syllabus-progress { color: var(--green); }
+.table-scroll { margin-top: 40px; overflow-x: auto; border: 1px solid var(--line); }
+.syllabus-table { width: 100%; min-width: 780px; border-collapse: collapse; font-size: 14px; }
+.syllabus-table th { text-align: left; padding: 13px 16px; color: var(--green); font: 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; background: rgba(185,242,39,.05); border-bottom: 1px solid var(--line); }
+.syllabus-table td { padding: 13px 16px; color: #aab4b8; border-bottom: 1px solid var(--line); vertical-align: top; }
+.syllabus-table tbody tr:last-child td { border-bottom: 0; }
+.syllabus-table tbody tr:hover td { background: rgba(185,242,39,.03); }
+.syllabus-table .row-next td { background: rgba(185,242,39,.05); }
+.cell-no { white-space: nowrap; color: #eef2ed; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.lesson-status { display: inline-block; padding: 5px 9px; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .1em; border: 1px solid var(--line); color: #85929a; white-space: nowrap; }
+.st-next { color: var(--ink); background: var(--green); border-color: var(--green); font-weight: 600; }
+.st-todo { color: var(--green); border-color: rgba(185,242,39,.4); }
+.syllabus-modules { display: grid; gap: 13px; margin-top: 48px; }
+.syllabus-module { border: 1px solid var(--line); background: linear-gradient(135deg, rgba(255,255,255,.035), rgba(255,255,255,.008)); }
+.syllabus-module summary { display: flex; align-items: center; gap: 18px; padding: 20px 22px; cursor: pointer; list-style: none; }
+.syllabus-module summary::-webkit-details-marker { display: none; }
+.syllabus-module summary:hover .module-title { color: var(--green); }
+.syllabus-module summary .card-index { min-width: 90px; }
+.module-title { flex: 1; color: #f2f4f0; font-size: 20px; letter-spacing: -.03em; }
+.module-chevron { color: var(--green); transition: transform .2s var(--ease-out); flex: 0 0 auto; }
+.syllabus-module[open] .module-chevron { transform: rotate(180deg); }
+.module-lessons { border-top: 1px solid var(--line); padding: 8px 22px 22px; display: grid; gap: 22px; }
+.module-lesson-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 18px; }
+.module-lesson h4 { margin-top: 10px; color: #f2f4f0; font-size: 17px; letter-spacing: -.02em; }
+.module-lesson ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.module-lesson li { position: relative; padding-left: 16px; color: #aab4b8; font-size: 14px; line-height: 1.6; }
+.module-lesson li::before { content: "›"; position: absolute; left: 0; color: var(--green); }
+.syllabus-main .tracks-cta { margin-top: 64px; }
+.syllabus-term { margin-top: 26px; color: #66737c; font: 10px 'IBM Plex Mono', monospace; letter-spacing: .08em; }
 
 .section-join { background: #dfe7dd; color: #121b18; }
 .join-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; align-items: start; }
@@ -370,6 +409,10 @@ h2 { margin-top: 19px; color: #f1f4f0; font-size: clamp(2.6rem, 5vw, 5.1rem); li
   .gallery-item img { height: 180px; }
   .gallery-viewer img { max-height: 60vh; }
   .join-copy { margin-bottom: 42px; }
+  .syllabus-module summary { flex-wrap: wrap; gap: 10px; padding: 16px; }
+  .syllabus-module summary .card-index { min-width: 0; }
+  .module-title { flex-basis: 100%; font-size: 18px; }
+  .module-lessons { padding: 6px 16px 18px; }
   .cyber-form { padding: 18px; }
   .form-split { display: block; }
   .contact-layout > div { margin-bottom: 50px; }
