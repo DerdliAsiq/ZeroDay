@@ -1,16 +1,36 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { hideBrokenImg } from "@/lib/site";
-import { ChevronLeft, ChevronRight, Expand, Images } from "lucide-react";
+import { ChevronLeft, ChevronRight, Expand, Images, Play } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-const GALLERY = Array.from({ length: 26 }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
+type GalleryItem = {
+  src: string;
+  code: string;
+  alt: string;
+  kind: "image" | "video";
+};
+
+function item(n: string, ext = "jpeg", kind: GalleryItem["kind"] = "image"): GalleryItem {
   return {
-    src: `/images/gallery-${n}.jpeg`,
+    src: `/images/gallery-${n}.${ext}`,
     code: `GAL / ${n}`,
-    alt: `Zero Day klub tədbiri ${n}`,
+    alt: kind === "video" ? `Zero Day klub videosu ${n}` : `Zero Day klub tədbiri ${n}`,
+    kind,
   };
-});
+}
+
+// Mövcud faylların dəqiq siyahısı (03,04,16,17 yoxdur — boş düymə yaratmamaq üçün).
+// Yeni: 27-30 jpeg, 31 mp4, 32 png (user_images-dən normalize edilib).
+const GALLERY: GalleryItem[] = [
+  item("01"), item("02"),
+  item("05"), item("06"), item("07"), item("08"), item("09"), item("10"),
+  item("11"), item("12"), item("13"), item("14"), item("15"),
+  item("18"), item("19"), item("20"), item("21"), item("22"),
+  item("23"), item("24"), item("25"), item("26"),
+  item("27"), item("28"), item("29"), item("30"),
+  item("31", "mp4", "video"),
+  item("32", "png"),
+];
 
 export default function Gallery() {
   const [active, setActive] = useState<number | null>(null);
@@ -56,8 +76,12 @@ export default function Gallery() {
                 <div className="gallery-grid">
                   {GALLERY.map((item, i) => (
                     <button key={item.src} className="gallery-item" onClick={() => setActive(i)} aria-label={`${item.alt} — böyüt`}>
-                      <img src={item.src} alt={item.alt} loading="lazy" decoding="async" onError={hideBrokenImg} />
-                      <span className="gallery-meta"><span>{item.code}</span><Expand size={14} /></span>
+                      {item.kind === "video" ? (
+                        <video src={item.src} muted playsInline preload="metadata" aria-label={item.alt} />
+                      ) : (
+                        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" onError={hideBrokenImg} />
+                      )}
+                      <span className="gallery-meta"><span>{item.code}</span>{item.kind === "video" ? <Play size={14} /> : <Expand size={14} />}</span>
                     </button>
                   ))}
                 </div>
@@ -71,7 +95,11 @@ export default function Gallery() {
           {active !== null && (
             <div className="gallery-viewer">
               <div className="gallery-viewer-top"><span>{GALLERY[active].code} / {String(GALLERY.length).padStart(2, "0")}</span><span>{GALLERY[active].alt}</span></div>
-              <img src={GALLERY[active].src} alt={GALLERY[active].alt} onError={hideBrokenImg} />
+              {GALLERY[active].kind === "video" ? (
+                <video src={GALLERY[active].src} controls autoPlay playsInline style={{ width: "100%", maxHeight: "70vh", background: "#05070a" }} />
+              ) : (
+                <img src={GALLERY[active].src} alt={GALLERY[active].alt} onError={hideBrokenImg} />
+              )}
               <div className="gallery-viewer-nav">
                 <button onClick={() => step(-1)} aria-label="Əvvəlki şəkil"><ChevronLeft size={20} /></button>
                 <button onClick={() => step(1)} aria-label="Növbəti şəkil"><ChevronRight size={20} /></button>

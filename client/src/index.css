@@ -238,15 +238,15 @@ h2 { margin-top: 19px; color: #f1f4f0; font-size: clamp(2.6rem, 5vw, 5.1rem); li
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 48px; }
 .gallery-item { position: relative; display: block; padding: 0; overflow: hidden; cursor: zoom-in; border: 1px solid var(--line); background: #0a0e13; transition: border-color .2s ease, transform .2s var(--ease-out); }
 .gallery-item:hover { border-color: rgba(185,242,39,.55); transform: translateY(-4px); }
-.gallery-item img { width: 100%; height: 240px; object-fit: cover; display: block; filter: saturate(.85); transition: transform .35s var(--ease-out), filter .25s ease; }
-.gallery-item:hover img { transform: scale(1.03); filter: saturate(1); }
+.gallery-item img, .gallery-item video { width: 100%; height: 240px; object-fit: cover; display: block; filter: saturate(.85); transition: transform .35s var(--ease-out), filter .25s ease; }
+.gallery-item:hover img, .gallery-item:hover video { transform: scale(1.03); filter: saturate(1); }
 .gallery-meta { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; color: #a3adb0; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .08em; background: linear-gradient(transparent, rgba(8,12,16,.92)); }
 .gallery-meta span:first-child { color: var(--green); }
 .gallery-lightbox { max-width: min(920px, calc(100vw - 2rem)); padding: 0; overflow: hidden; border: 1px solid rgba(185,242,39,.3); background: #0a0e13; }
 .gallery-viewer { display: grid; }
 .gallery-viewer-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; color: #a3adb0; font: 10px 'IBM Plex Mono', monospace; letter-spacing: .08em; border-bottom: 1px solid var(--line); }
 .gallery-viewer-top span:first-child { color: var(--green); }
-.gallery-viewer img { width: 100%; max-height: 70vh; object-fit: contain; display: block; background: #05070a; }
+.gallery-viewer img, .gallery-viewer video { width: 100%; max-height: 70vh; object-fit: contain; display: block; background: #05070a; }
 .gallery-viewer-nav { display: flex; justify-content: space-between; padding: 12px 14px; border-top: 1px solid var(--line); }
 .gallery-viewer-nav button { width: 44px; height: 44px; display: grid; place-items: center; color: var(--green); cursor: pointer; border: 1px solid rgba(185,242,39,.4); background: transparent; transition: background .18s ease, color .18s ease; }
 .gallery-viewer-nav button:hover { background: var(--green); color: var(--ink); }
