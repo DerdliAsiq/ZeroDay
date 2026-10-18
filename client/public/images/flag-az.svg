@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice">
+  <!-- Mavi şerit (üst) -->
+  <rect width="600" height="100" y="0" fill="#00B5E2"/>
+  <!-- Qırmızı şerit (orta) -->
+  <rect width="600" height="100" y="100" fill="#EF3340"/>
+  <!-- Yaşıl şerit (alt) -->
+  <rect width="600" height="100" y="200" fill="#509E2F"/>
+
+  <!-- Hilal (beyaz) - qırmızı şerit ortasında, orta hizaya yakın -->
+  <g transform="translate(155, 150)">
+    <!-- Dış daire (beyaz) -->
+    <circle cx="0" cy="0" r="42" fill="white"/>
+    <!-- İç daire (qırmızı, sağa kaydırılmış) — hilal şekli oluşturur -->
+    <circle cx="14" cy="0" r="35" fill="#EF3340"/>
+  </g>
+
+  <!-- 8 köşeli yıldız (beyaz) - hilalın hemen sağında -->
+  <g transform="translate(208, 150)">
+    <polygon points="0,-22 4.5,-6.9 19.2,-6.9 8,2.8 12.4,18.1 0,9 -12.4,18.1 -8,2.8 -19.2,-6.9 -4.5,-6.9" fill="white"/>
+  </g>
+</svg>

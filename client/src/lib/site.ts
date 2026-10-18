@@ -10,6 +10,8 @@ export const ASSETS = {
   mentorBerzamin: "/images/mentor-berzamin.jpeg",
   mentorNatevan: "/images/mentor-natevan.jpeg",
   mentorRamil: "/images/mentor-ramil.png",
+  mentorKazim: "/images/mentor-kazim.jpeg",
+  flagAz: "/images/flag-az.svg",
 };
 
 export function hideBrokenImg(event: SyntheticEvent<HTMLImageElement>) {

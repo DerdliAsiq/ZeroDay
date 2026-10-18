@@ -26,6 +26,14 @@ const MENTORS = [
     alt: "Ramil Əliyev — Mentor",
     bio: "Məlumat tezliklə əlavə olunacaq.",
   },
+  {
+    name: "Qasımov Kazım",
+    role: "İdarə heyəti",
+    initials: "QK",
+    image: ASSETS.mentorKazim,
+    alt: "Qasımov Kazım — İdarə heyəti",
+    bio: "Məlumat tezliklə əlavə olunacaq.",
+  },
 ];
 
 export default function About() {

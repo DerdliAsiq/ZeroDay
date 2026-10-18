@@ -33,6 +33,7 @@ export default function Home() {
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-image" style={{ backgroundImage: `url(${ASSETS.hero})` }} />
           <div className="hero-overlay" />
+          <img src={ASSETS.flagAz} alt="" className="hero-flag" aria-hidden="true" />
           <div className="hero-grid" />
           <div className="container hero-layout">
             <div className="hero-content">
