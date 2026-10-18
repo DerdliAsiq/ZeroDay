@@ -1,5 +1,6 @@
 import { ML_GRADING, ML_META, ML_MODULES, ML_RULES, ML_TECH } from "@/lib/ml-syllabus";
 import { ALL_LESSONS, SYLLABUS, SYLLABUS_META, lessonStatus, nextLessonISO } from "@/lib/syllabus";
+import { PYTHON_LESSONS, PYTHON_META } from "@/lib/python-syllabus";
 import { ArrowUpRight, BookOpenCheck, BrainCircuit, CalendarDays, ChevronDown, FileClock, TerminalSquare } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
@@ -96,15 +97,48 @@ function KiberTab() {
 function PythonTab() {
   return (
     <>
-      <p className="syllabus-lead">I günlər keçirilən Python fənninin sillabusu hazırlanır.</p>
-      <div className="coming-card">
-        <span className="lesson-status st-todo">TEZLİKLƏ</span>
-        <h3>Python sillabusu yoldadır</h3>
-        <p>Mövzu bölgüsü dərc olunan kimi bu səhifədə görünəcək. Xəbərdarlıq üçün qeydiyyatdan keç.</p>
-        <div className="hero-actions">
-          <Link className="button button-primary" href="/qeydiyyat">Kluba qoşul <ArrowUpRight size={17} /></Link>
-        </div>
+      <p className="syllabus-lead">{PYTHON_META.intro}</p>
+      <div className="syllabus-meta">
+        <span><CalendarDays size={14} /> {PYTHON_META.schedule}</span>
+        <span className="syllabus-progress">{PYTHON_META.term}</span>
+        <span className="syllabus-progress">{PYTHON_META.mentor}</span>
       </div>
+
+      <div className="table-scroll">
+        <table className="syllabus-table">
+          <thead>
+            <tr><th>Dərs</th><th>Mövzu Bölməsi</th><th>Əsas Focus</th></tr>
+          </thead>
+          <tbody>
+            {PYTHON_LESSONS.map((l) => (
+              <tr key={l.no}>
+                <td className="cell-no">Dərs {l.no}</td>
+                <td>{l.title}</td>
+                <td>{l.focus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="syllabus-modules">
+        {PYTHON_LESSONS.map((l, i) => (
+          <details className="syllabus-module" key={l.no} open={i === 0}>
+            <summary>
+              <span className="card-index">{String(l.no).padStart(2, "0")} <span>DƏRS</span></span>
+              <span className="module-title">{l.title}</span>
+              <ChevronDown size={18} className="module-chevron" />
+            </summary>
+            <div className="module-lessons">
+              <article className="module-lesson">
+                <div className="module-lesson-top"><span className="cell-no">{l.focus}</span></div>
+                <ul>{l.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
+              </article>
+            </div>
+          </details>
+        ))}
+      </div>
+      <p className="syllabus-term">{PYTHON_META.mentor}</p>
     </>
   );
 }
@@ -237,7 +271,7 @@ export default function Syllabus() {
 
               <div className="tracks-cta">
                 <h3>Dərslərə qoşulmağa hazırsan?</h3>
-                <p>Qeydiyyatdan keç — növbəti dərsin yeri və vaxtı sənə göndəriləcək.</p>
+                <p>Qediyyatdan kec — növbəti dərsin yeri və vaxtı sənə göndəriləcək.</p>
                 <div className="hero-actions">
                   <Link className="button button-primary" href="/qeydiyyat">Kluba qoşul <ArrowUpRight size={17} /></Link>
                 </div>
