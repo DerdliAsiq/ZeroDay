@@ -19,6 +19,14 @@ const MENTORS = [
     bio: "Natəvan Rüstəmova texnologiya, kibertəhlükəsizlik və rəqəmsal sahələrə böyük marağı olan, təşkilatçılıq və liderlik bacarıqları olan bir gəncdir. O, klub daxilində layihələrin idarə olunması, tədbirlərin təşkili istiqamətində fəaliyyət göstərir. Hazırda Gəncə Dövlət Universitetində Kompüter Elmləri üzrə təhsil alır və Zero Day Cyber Club-ın Sədr müavini olaraq klubun inkişafına və tələbələrin birgə öyrənmə mühitinin formalaşdırılmasına töhfə verir.",
   },
   {
+    name: "Aytac Celil",
+    role: "Sədər müavini",
+    initials: "AC",
+    image: ASSETS.mentorAytac,
+    alt: "Aytac Celil — Sədər müavini",
+    bio: "Məlumat tezliklə əlavə olunacaq.",
+  },
+  {
     name: "Ramil Əliyev",
     role: "MENTOR",
     initials: "RE",
@@ -43,20 +51,12 @@ const MENTORS = [
     bio: "Məlumat tezliklə əlavə olunacaq.",
   },
   {
-    name: "Ferrux Ismayilov",
+    name: "Fərrux İsmayılov",
     role: "İdarə heyəti",
     initials: "FI",
     image: ASSETS.mentorFerrux,
-    alt: "Ferrux Ismayilov — İdarə heyəti",
-    bio: "Məlumat tezliklə əlavə olunacaq.",
-  },
-  {
-    name: "Aytac Celil",
-    role: "Sədər müavini",
-    initials: "AC",
-    image: ASSETS.mentorAytac,
-    alt: "Aytac Celil — Sədər müavini",
-    bio: "Məlumat tezliklə əlavə olunacaq.",
+    alt: "Fərrux İsmayılov — İdarə heyəti",
+    bio: "Fərrux İsmayılov kibertəhlükəsizlik və rəqəmsal bacarıqlara marağı olan gəncdir. İdare heyətində fəaliyyət göstərir.",
   },
 ];
 
