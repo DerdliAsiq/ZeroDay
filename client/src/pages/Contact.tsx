@@ -1,4 +1,5 @@
 import { SOCIALS } from "@/lib/site";
+import { csrfHeaders } from "@/lib/csrf";
 import { ArrowUpRight, Github, Instagram, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -36,7 +37,7 @@ export default function Contact() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: csrfHeaders(),
         body: JSON.stringify(payload),
       });
       setContactSending(false);
@@ -65,7 +66,7 @@ export default function Contact() {
     try {
       const res = await fetch("/api/anonymous", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: csrfHeaders(),
         body: JSON.stringify(payload),
       });
       setAnonSending(false);

@@ -1,6 +1,10 @@
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import express, { type Express, type Request, type Response } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { csrfMiddleware } from "./csrf.js";
+import { recordHit } from "./honeypot.js";
 import { RATE_MAX, isRateLimited } from "./rateLimit.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,7 +44,8 @@ function rateLimitHeaders(res: Response, scopeIpResetSec: number, remaining: num
 }
 
 function checkLimit(req: Request, res: Response, scope: string): boolean {
-  const result = isRateLimited(req.ip ?? "x", scope);
+  const ua = req.get("user-agent") ?? "";
+  const result = isRateLimited(req.ip ?? "x", scope, ua);
   rateLimitHeaders(res, result.resetSec, result.remaining);
   if (result.limited) {
     res.setHeader("Retry-After", String(result.retryAfterSec));
@@ -56,6 +61,49 @@ export function createApp(opts: { serveStatic?: boolean } = {}): Express {
   app.disable("x-powered-by");
   app.set("trust proxy", 1);
   app.use(express.json({ limit: "32kb" }));
+  app.use(cookieParser());
+
+  // Sessiz İstihbarat: /admin (honeypot) yoluna olan bütün istəkləri
+  // qeyd edir (IP, UA, query/body) və Telegram/Discord webhook-a bildirir.
+  // CSRF/CORS-dən əvvəl gəlir ki, bloklanmış istəklər də qeydə düşsün.
+  app.use("/admin", (req, res, next) => {
+    recordHit({
+      ip: req.ip ?? "x",
+      method: req.method,
+      path: req.originalUrl,
+      userAgent: req.get("user-agent") ?? "",
+      query: req.query as Record<string, unknown>,
+      body: (req.body ?? {}) as Record<string, unknown>,
+      at: new Date().toISOString(),
+    });
+    next();
+  });
+
+  // CORS: yalnız izinli origin-lərdən API çağırışlarına icazə
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://zeroday-gdu.onrender.com",
+    process.env.RENDER_EXTERNAL_URL,
+    process.env.SITE_URL,
+  ].filter((x): x is string => !!x);
+
+  app.use(
+    cors({
+      origin: (origin, cb) => {
+        // curl/təhlükəsizlik alətləri və ya birbaşa server-sid istəklər üçün origin yoxdur
+        if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+        // İzinli deyil → CORS başlıqları yazılmaq (brauzer bloklayır)
+        return cb(null, false);
+      },
+      methods: ["POST"],
+      allowedHeaders: ["Content-Type", "X-CSRF-Token"],
+      credentials: false,
+    }),
+  );
+
+  // GET istəkləri üçün CSRF token çerezi set et, POST-larda yoxla
+  app.use(csrfMiddleware);
 
   app.post("/api/register", async (req, res) => {
     if (checkLimit(req, res, "register")) return;

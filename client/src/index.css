@@ -63,6 +63,72 @@ img { display: block; max-width: 100%; }
 
 .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .site-shell { overflow: hidden; background: var(--ink); }
+
+/* ===== /admin — tam ekran honeypot (tam qara, qırmızı mətn) ===== */
+.admin-fullscreen {
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-layout {
+  width: 100%;
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+  padding: 48px 40px;
+}
+.admin-image-wrap {
+  display: flex;
+  justify-content: center;
+  background: #000;
+}
+.admin-image {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+.admin-text-block {
+  display: grid;
+  gap: 26px;
+}
+.admin-line {
+  margin: 0;
+  color: #ef3340; /* Signal qırmızı */
+  font-size: 19px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+.admin-line-strong {
+  font-size: 21px;
+  font-weight: 600;
+  padding: 26px;
+  border: 1px solid rgba(239, 51, 64, .55);
+  background: rgba(239, 51, 64, .07);
+}
+.admin-line-warn {
+  font: 600 15px/1.6 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(239, 51, 64, .5);
+}
+@media (max-width: 860px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding: 40px 24px;
+    text-align: left;
+  }
+  .admin-image { max-width: 320px; }
+  .admin-line { font-size: 16px; }
+  .admin-line-strong { font-size: 17px; padding: 18px; }
+}
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; padding: 12px 16px; background: var(--green); color: var(--ink); font: 12px 'IBM Plex Mono', monospace; }
 .skip-link:focus { left: 12px; top: 12px; }
 

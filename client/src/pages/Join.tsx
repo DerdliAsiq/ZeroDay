@@ -1,3 +1,4 @@
+import { csrfHeaders } from "@/lib/csrf";
 import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -37,7 +38,7 @@ export default function Join() {
     try {
       const res = await fetch("/api/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: csrfHeaders(),
         body: JSON.stringify(payload),
       });
       setMembershipSending(false);
