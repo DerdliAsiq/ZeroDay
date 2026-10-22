@@ -34,6 +34,30 @@ const MENTORS = [
     alt: "Qasımov Kazım — İdarə heyəti",
     bio: "Məlumat tezliklə əlavə olunacaq.",
   },
+  {
+    name: "Aydan Abbasova",
+    role: "İdarə heyəti",
+    initials: "AA",
+    image: ASSETS.mentorAydan,
+    alt: "Aydan Abbasova — İdarə heyəti",
+    bio: "Məlumat tezliklə əlavə olunacaq.",
+  },
+  {
+    name: "Ferrux Ismayilov",
+    role: "İdarə heyəti",
+    initials: "FI",
+    image: ASSETS.mentorFerrux,
+    alt: "Ferrux Ismayilov — İdarə heyəti",
+    bio: "Məlumat tezliklə əlavə olunacaq.",
+  },
+  {
+    name: "Aytac Celil",
+    role: "Sədər müavini",
+    initials: "AC",
+    image: ASSETS.mentorAytac,
+    alt: "Aytac Celil — Sədər müavini",
+    bio: "Məlumat tezliklə əlavə olunacaq.",
+  },
 ];
 
 export default function About() {

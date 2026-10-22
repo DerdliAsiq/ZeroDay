@@ -11,6 +11,9 @@ export const ASSETS = {
   mentorNatevan: "/images/mentor-natevan.jpeg",
   mentorRamil: "/images/mentor-ramil.png",
   mentorKazim: "/images/mentor-kazim.jpeg",
+  mentorAydan: "/images/mentor-aydan.jpeg",
+  mentorFerrux: "/images/mentor-ferrux.jpeg",
+  mentorAytac: "/images/mentor-aytac.jpeg",
   flagAz: "/images/flag-az.svg",
 };
 
